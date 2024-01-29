@@ -13,7 +13,7 @@ export interface FormValues {
 
 export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAction<FormValues[]>>}) => {
 
-    const {formValues, handleChange} = useForm<FormValues>({
+    const {formValues, handleChange, reset} = useForm<FormValues>({
         mascota: "",
         raza: "",
         dueño: "",
@@ -24,9 +24,18 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
 
     const handleSubmit = (e : FormEvent) => {
         e.preventDefault();
-
+       
         setPacientes((prev: FormValues[]) => {
             return[...prev, formValues];
+        });
+
+        reset({
+            mascota: "",
+            raza: "",
+            dueño: "",
+            email: "",
+            numero: "",
+            descripcion: "",
         });
     }
 
@@ -39,6 +48,7 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Mascota"
         name="mascota"
+        value={formValues.mascota}
         type="text"
         placeholder="Nombre de la mascota"
         onChange={handleChange}
@@ -46,6 +56,7 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Raza"
         name="raza"
+        value={formValues.raza}
         type="text"
         placeholder="Raza de la mascota"
         onChange={handleChange}
@@ -53,6 +64,7 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Dueño"
         name="dueño"
+        value={formValues.dueño}
         type="text"
         placeholder="Nombre y Apellido del dueño"
         onChange={handleChange}
@@ -60,6 +72,7 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Email"
         name="email"
+        value={formValues.email}
         type="email"
         placeholder="Email del dueño"
         onChange={handleChange}
@@ -67,6 +80,7 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Número"
         name="numero"
+        value={formValues.numero}
         type="text"
         placeholder="Número de telefono del dueño"
         onChange={handleChange}
@@ -74,12 +88,13 @@ export const Formulario = ({setPacientes} : {setPacientes : Dispatch<SetStateAct
         <InputForm 
         label="Descripcion"
         name="descripcion"
+        value={formValues.descripcion}
         type="text"
         placeholder="Descripción"
         onChange={handleChange}
         />
        
-        <button className="text-white bg-indigo-680 w-full p-3 uppercase font-bold hover:bg-indigo-800 transition-all">
+        <button className="text-white bg-indigo-680 w-full p-3 uppercase font-bold  transition-all hover:bg-indigo-800">
             Agregar Paciente
         </button>
       </form>

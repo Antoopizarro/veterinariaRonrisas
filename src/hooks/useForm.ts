@@ -11,8 +11,9 @@ export const useForm = <T> (initialState : T) => {
         })
     }
 
-    const reset = () => {
-        setFormValues(initialState);
+    const reset = ( resetState : T  ) => {
+        setFormValues(resetState);
+        console.log(resetState);
     }
 
   return {

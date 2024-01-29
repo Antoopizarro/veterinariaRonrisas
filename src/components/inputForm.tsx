@@ -9,6 +9,7 @@ export interface InputFormProps {
   placeholder?: string;
   className? : string;
   error? : string;
+  value: string;
   onChange? : (e : ChangeEvent<HTMLInputElement>) => void;
   
 }
@@ -19,6 +20,7 @@ export const InputForm = ({
     placeholder, 
     className,
     error,
+    value,
     onChange
 }: InputFormProps) => {
   return (
@@ -32,6 +34,7 @@ export const InputForm = ({
       <input 
       id={name} 
       name={name} 
+      value={value}
       type={type} 
       placeholder={placeholder} 
       className={`border w-full p-2 mt-2 placeholder-gray-500 ${className} ${error ? 'border-red-700' : 'border-gray'}` } 
